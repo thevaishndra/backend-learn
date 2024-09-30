@@ -1,0 +1,11 @@
+{
+  "name": "backend-learn",
+  "version": "1.0.0",
+  "description": "Whatever, I learn in backend I'll be documenting here.",
+  "main": "01fundamentals.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"vaishnavi chandra\"",
+  "license": "ISC"
+}
