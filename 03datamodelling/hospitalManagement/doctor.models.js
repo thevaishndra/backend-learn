@@ -18,7 +18,7 @@ const doctorSchema = new mongoose.Schema({
         default : 0,
     },
     worksInHospitals : {
-        
+        type : String,
     }
 }, { timestamps: true });
 
