@@ -11,6 +11,14 @@ dotenv.config({
 
 
 connectDB()
+.then(() => {
+    app.listen(process.env.port || 8000, () => {
+        console.log(`Server is running at port: ${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("Mongo db connection failed!!!", err);
+})
 /*import express from 'express';
 const app = express();
 //database is in another continent - saying to always remember, we hve to add async and try catch
