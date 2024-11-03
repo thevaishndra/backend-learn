@@ -5,7 +5,7 @@ import dotenv from 'dotenv'//we will do like this
 import connectDB from './db/index.js';
 
 dotenv.config({
-    path:'./env'
+    path:'./env'//loading variables from aspecified path
 })
 //as early as possible in your application, import and configure dotenv
 
@@ -19,6 +19,16 @@ connectDB()
 .catch((err) => {
     console.log("Mongo db connection failed!!!", err);
 })
+
+
+
+
+
+
+
+
+
+
 /*import express from 'express';
 const app = express();
 //database is in another continent - saying to always remember, we hve to add async and try catch
