@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';//enables  cross origin resource sharing - allowing server to respond to requests from different origins
-import cookieParser from 'cookie-Parser';//Parses cookies attached to the client requests, making them available in req.cookies
+import cookieParser from "cookie-parser";//Parses cookies attached to the client requests, making them available in req.cookies
 
 const app = express();
 
@@ -17,4 +17,12 @@ app.use(express.urlencoded({extended: true, limit: "16kb"}))//allows parsing of 
 app.use(express.static("public"))//making files in that folder accessible at the root level
 app.use(cookieParser());//allowing the server to read cookies sent by the client in each request and access them via req.cookies
 
+
+//routes import
+import userRouter from './routes/user.routes.js'
+
+//routes declared
+app.use("/api/v1/users", userRouter)
+
+// http://localhost:8000/users/register/login
 export {app}

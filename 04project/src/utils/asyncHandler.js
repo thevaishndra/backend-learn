@@ -17,7 +17,7 @@
 //asyncHandler is used to wrap any route handler function so that any unhandled 
 //errors in requestHandler are caught and passed to the next middleware
 const asyncHandler = (requestHandler) => {
-    (req, res, next) => {
+    return (req, res, next) => {
         Promise.resolve(requestHandler(req, res, next)).catch((err) => next(err))//resolving the promise and catches the error and passes it to next error
     }
 }
