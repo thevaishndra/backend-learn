@@ -55,7 +55,7 @@ const userSchema = new Schema(
 //middleware func runs before saving a user
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next(); //It checks if the password field is modified,
-  this.password = bcrypt.hash(this.password, 10); //and if it is, it hashes the password using bcrypt
+  this.password = await bcrypt.hash(this.password, 10); //and if it is, it hashes the password using bcrypt
   next();
 })//as these functions take time
 
