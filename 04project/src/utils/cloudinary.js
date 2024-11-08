@@ -2,7 +2,7 @@
 //online service for storing and managing media files
 import {v2 as cloudinary} from 'cloudinary';
 import fs from 'fs'; //file system
-import { v2 as cloudinary } from "cloudinary";
+
 
   //sets up cloudinary connection using access keys from env
   cloudinary.config({
@@ -22,6 +22,7 @@ import { v2 as cloudinary } from "cloudinary";
       //"auto" lets Cloudinary detect the file type
       //file has been uploaded successfully
       console.log("file is uploaded on culinary", response.url);
+      fs.unlinkSync(localFilePath)
       return response;
     } catch (error) {
       fs.unlinkSync(localFilePath) //remove the locally saved temporary file as upload operation failed
