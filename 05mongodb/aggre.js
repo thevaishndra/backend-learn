@@ -146,3 +146,85 @@
     $count: 'userswithSpecialPhoneNumber'
   }
 ];
+
+//who has registered most recently
+[
+  {
+    $sort: {
+      registered: -1
+    }
+  },
+  {$limit: 4},
+  {
+    $project: {
+      name: 1,
+      registered: 1,
+      favoriteFruit: 1
+    }
+  }
+]
+
+//categorise users by their fav fruit
+[
+  {
+    $group: {
+      _id: "$favoriteFruit",
+      users: { $push: "$name"}
+    }
+  }
+]
+
+//how many users have 'ad' as the second tag in their list of tags?
+[
+  {
+     $match: {
+      "tags.1": "ad",
+     }
+  },
+  {
+    $count: 'secondTagAd'
+  }
+]
+
+//Find users who have both 'enim' and 'id' as their tags
+[
+  {
+    $match: {
+      tags: {$all: ["enim", "id"]}
+    }
+  }
+]
+
+//List all companies located in the USA with their corresponding user count.
+[
+  {
+    $match: {
+      "company.location.country": "USA"
+    }
+  },
+  {
+    $group: {
+      _id: "$company.title",
+      userCount: {$sum: 1}
+    }
+  }
+]
+
+//lookup in mongodb aggregation
+[
+  {
+    $lookup: {
+      from: "authors",
+      localField: "author_id",
+      foreignField: "_id",
+      as: "author_details"
+    }
+  },
+  {
+    $addFields: {
+      author_details: {
+        $arrayElemAt: ["$author_details", 0]
+      }
+    }
+  }
+]
